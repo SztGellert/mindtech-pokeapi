@@ -5,7 +5,7 @@ import { NgForm } from '@angular/forms';
 import { Pokemon } from '../../pokemons/pokemon.model';
 
 @Component({
-  selector: 'app-create-booking',
+  selector: 'app-create-catch',
   templateUrl: './create-catch.component.html',
   styleUrls: ['./create-catch.component.scss']
 })

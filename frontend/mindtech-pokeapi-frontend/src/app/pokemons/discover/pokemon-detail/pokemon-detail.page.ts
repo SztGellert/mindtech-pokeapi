@@ -131,7 +131,7 @@ export class PokemonDetailPage implements OnInit, OnDestroy {
       .then(resultData => {
         if (resultData.role === 'confirm') {
           this.loadingCtrl
-            .create({ message: 'Booking place...' })
+            .create({ message: 'Catching pokemon...' })
             .then(loadingEl => {
               loadingEl.present();
               const data = resultData.data.bookingData;

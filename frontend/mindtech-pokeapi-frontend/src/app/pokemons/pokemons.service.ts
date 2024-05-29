@@ -7,6 +7,7 @@ import { Pokemon } from './pokemon.model';
 import { AuthService } from '../auth/auth.service';
 import { PlaceLocation } from './location.model';
 import {PokemonsPageModule} from "./pokemons.module";
+import {environment} from "../../environments/environment";
 
 // [
 //   new Place(
@@ -69,7 +70,7 @@ export class PokemonsService {
       take(1),
       switchMap(token => {
         return this.http.get<{ [key: string]: PokemonData }>(
-          `https://mindtech-pokeapi-default-rtdb.europe-west1.firebasedatabase.app/offered-places.json?auth=${token}`
+            environment.backendURI + "/pokemons"
         );
       }),
       map(resData => {
@@ -79,14 +80,14 @@ export class PokemonsService {
             pokemons.push(
               new Pokemon(
                 key,
-                resData[key].title,
-                resData[key].description,
-                resData[key].imageUrl,
-                resData[key].price,
-                new Date(resData[key].availableFrom),
-                new Date(resData[key].availableTo),
-                resData[key].userId,
-                resData[key].location
+                resData["results"][key].title,
+                resData["results"][key].description,
+                resData["results"][key].imageUrl,
+                resData["results"][key].price,
+                new Date(resData["results"][key].availableFrom),
+                new Date(resData["results"][key].availableTo),
+                resData["results"][key].userId,
+                resData["results"][key].location
               )
             );
           }
@@ -105,7 +106,7 @@ export class PokemonsService {
       take(1),
       switchMap(token => {
         return this.http.get<PokemonData>(
-          `https://mindtech-pokeapi-default-rtdb.europe-west1.firebasedatabase.app/offered-places/${id}.json?auth=${token}`
+          environment.backendURI + "/pokemons"
         );
       }),
       map(pokemonData => {

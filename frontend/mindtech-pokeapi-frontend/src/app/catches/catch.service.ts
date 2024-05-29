@@ -65,7 +65,7 @@ export class CatchService {
           dateTo
         );
         return this.http.post<{ name: string }>(
-          `https://mindtech-pokeapi-default-rtdb.europe-west1.firebasedatabase.app/bookings.json?auth=${token}`,
+          `https://mindtech-pokeapi-default-rtdb.europe-west1.firebasedatabase.app/catches.json?auth=${token}`,
           { ...newCatch, id: null }
         );
       }),
@@ -86,15 +86,15 @@ export class CatchService {
       take(1),
       switchMap(token => {
         return this.http.delete(
-          `https://https://mindtech-pokeapi-default-rtdb.europe-west1.firebasedatabase.app/bookings/${catchId}.json?auth=${token}`
+          `https://https://mindtech-pokeapi-default-rtdb.europe-west1.firebasedatabase.app/catches/${catchId}.json?auth=${token}`
         );
       }),
       switchMap(() => {
         return this.catches;
       }),
       take(1),
-      tap(bookings => {
-        this._catches.next(bookings.filter(c => c.id !== catchId));
+      tap(catches => {
+        this._catches.next(catches.filter(c => c.id !== catchId));
       })
     );
   }
@@ -113,7 +113,7 @@ export class CatchService {
       take(1),
       switchMap(token => {
         return this.http.get<{ [key: string]: CatchData }>(
-          `https://mindtech-pokeapi-default-rtdb.europe-west1.firebasedatabase.app/bookings.json?orderBy="userId"&equalTo="${fetchedUserId}"&auth=${token}`
+          `https://mindtech-pokeapi-default-rtdb.europe-west1.firebasedatabase.app/catches.json?orderBy="userId"&equalTo="${fetchedUserId}"&auth=${token}`
         );
       }),
       map(catchData => {

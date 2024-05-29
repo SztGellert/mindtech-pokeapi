@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   googleMapsAPIKey: 'YOUR_GOOGLE_MAPS_API_KEY',
-  firebaseAPIKey: 'AIzaSyAPaLuUBmzSWmUccnrQx8BfSbh0d-LIssk'
+  firebaseAPIKey: 'AIzaSyAPaLuUBmzSWmUccnrQx8BfSbh0d-LIssk',
+  backendURI: 'http://localhost:3000'
 };
 
 /*

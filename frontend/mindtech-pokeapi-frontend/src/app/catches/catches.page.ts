@@ -6,7 +6,7 @@ import { CatchService } from './catch.service';
 import { Catch } from './catch.model';
 
 @Component({
-  selector: 'app-bookings',
+  selector: 'app-catches',
   templateUrl: './catches.page.html',
   styleUrls: ['./catches.page.scss']
 })
