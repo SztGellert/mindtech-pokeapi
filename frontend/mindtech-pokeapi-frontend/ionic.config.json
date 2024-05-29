@@ -1,5 +1,7 @@
 {
-  "name": "mindtech-pokeapi-frontend",
-  "integrations": {},
+  "name": "ionic-angular-course",
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }
