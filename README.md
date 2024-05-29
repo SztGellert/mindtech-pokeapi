@@ -16,6 +16,8 @@ npm install --legacy-peer-deps
 ionic serve (same as ng serve)
 
 for the backend the latest version of node was used, run separately.
+npm install 
+npm run start
 
 
 
