@@ -11,7 +11,7 @@ import { Plugins, Capacitor } from '@capacitor/core';
 
 import { MapModalComponent } from '../../map-modal/map-modal.component';
 import { environment } from '../../../../environments/environment';
-import { PlaceLocation, Coordinates } from '../../../places/location.model';
+import { PlaceLocation, Coordinates } from '../../../pokemons/location.model';
 
 @Component({
   selector: 'app-location-picker',

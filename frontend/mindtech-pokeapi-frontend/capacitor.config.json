@@ -1,6 +1,6 @@
 {
-  "appId": "com.udemycourse.ionicangular",
-  "appName": "ionic-angular-course",
+  "appId": "com.mindtech.pokeapi",
+  "appName": "mindtech-pokeapi-frontend",
   "bundledWebRuntime": false,
   "webDir": "www"
 }

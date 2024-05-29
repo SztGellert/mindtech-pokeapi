@@ -1,0 +1,90 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+      <!-- <ion-button (click)="onOpenMenu()">
+        Open
+      </ion-button> -->
+    </ion-buttons>
+    <ion-title>Discover Pokemons</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-segment (ionChange)="onFilterUpdate($event)" value="all">
+    <ion-segment-button value="all">All Pokemons</ion-segment-button>
+    <ion-segment-button value="bookable">Catchable Pokemons</ion-segment-button>
+  </ion-segment>
+  <ion-grid *ngIf="isLoading">
+    <ion-row>
+      <ion-col size="12" size-sm="8" offset-sm="2" class="ion-text-center">
+        <ion-spinner color="primary"></ion-spinner>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid
+    *ngIf="!isLoading && (!relevantPokemons || relevantPokemons.length <= 0)"
+  >
+    <ion-row>
+      <ion-col size="12" size-sm="8" offset-sm="2" class="ion-text-center">
+        <p>There are no catchable pokemons right now, please come back later!</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid *ngIf="!isLoading && relevantPokemons.length > 0">
+    <ion-row>
+      <ion-col size="12" size-sm="8" offset-sm="2" class="ion-text-center">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>{{ relevantPokemons[0].title }}</ion-card-title>
+            <ion-card-subtitle
+              >{{ relevantPokemons[0].price | currency }} /
+              Night</ion-card-subtitle
+            >
+          </ion-card-header>
+          <ion-img [src]="relevantPokemons[0].imageUrl"></ion-img>
+          <ion-card-content>
+            <p>{{ relevantPokemons[0].description }}</p>
+          </ion-card-content>
+          <div>
+            <ion-button
+              fill="clear"
+              color="primary"
+              [routerLink]="[
+                '/',
+                'pokemons',
+                'tabs',
+                'discover',
+                relevantPokemons[0].id
+              ]"
+            >
+              More
+            </ion-button>
+          </div>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12" size-sm="8" offset-sm="2" class="ion-text-center">
+        <ion-virtual-scroll
+          [items]="listedLoadedPokemons"
+          approxItemHeight="70px"
+        >
+          <ion-item
+            [routerLink]="['/', 'pokemons', 'tabs', 'discover', pokemon.id]"
+            detail
+            *virtualItem="let pokemon"
+          >
+            <ion-thumbnail slot="start">
+              <ion-img [src]="pokemon.imageUrl"></ion-img>
+            </ion-thumbnail>
+            <ion-label>
+              <h2>{{ pokemon.title }}</h2>
+              <p>{{ pokemon.description }}</p>
+            </ion-label>
+          </ion-item>
+        </ion-virtual-scroll>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
